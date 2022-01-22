@@ -14,9 +14,11 @@ public class PersonRepositoryImpl implements PersonRepository {
     Person barack = new Person( 4, "Barack", "Obama" );
 
     @Override
-    public Mono<Person> getById ( Integer id ) {
+    public Mono<Person> getById ( final Integer id ) {
         // publisher of zero or one element
-        return Mono.just( alassane );
+        return findAll()
+                .filter( person -> person.getId().equals( id ) )
+                .next();
     }
 
     @Override

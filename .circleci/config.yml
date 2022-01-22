@@ -26,6 +26,10 @@ jobs:
       - run:
           name: Test
           command: mvn test
+      # Code Analysis with SonalrCloud
+      - run:
+          name: Analyze on SonarCloud
+          command: mvn verify sonar:sonar -Dsonar.projectKey=adniang75_reactive-examples
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -33,4 +37,5 @@ workflows:
   build-and-test: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
-      - build-and-test
+      - build-and-test:
+          context: SonarCloud

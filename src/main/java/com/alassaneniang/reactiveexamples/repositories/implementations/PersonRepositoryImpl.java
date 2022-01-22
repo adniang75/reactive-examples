@@ -5,6 +5,8 @@ import com.alassaneniang.reactiveexamples.repositories.PersonRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 public class PersonRepositoryImpl implements PersonRepository {
 
     // emulating a Person repository
@@ -17,7 +19,7 @@ public class PersonRepositoryImpl implements PersonRepository {
     public Mono<Person> getById ( final Integer id ) {
         // publisher of zero or one element
         return findAll()
-                .filter( person -> person.getId().equals( id ) )
+                .filter( person -> Objects.equals( person.getId(), id ) )
                 .next();
     }
 
@@ -26,4 +28,5 @@ public class PersonRepositoryImpl implements PersonRepository {
         // publisher of zero or more elements
         return Flux.just( alassane, elon, jeff, barack );
     }
+
 }

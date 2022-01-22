@@ -1,4 +1,5 @@
 # Reactive Programming examples with Spring 5
 
 ![CircleCI](https://img.shields.io/circleci/build/github/adniang75/reactive-examples/master) ![GitHub language count](https://img.shields.io/github/languages/count/adniang75/reactive-examples) ![GitHub top language](https://img.shields.io/github/languages/top/adniang75/reactive-examples)
-
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=adniang75_reactive-examples&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=adniang75_reactive-examples) [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=adniang75_reactive-examples&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=adniang75_reactive-examples) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=adniang75_reactive-examples&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=adniang75_reactive-examples)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=adniang75_reactive-examples&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=adniang75_reactive-examples)

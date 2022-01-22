@@ -8,6 +8,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Objects;
 
 @DisplayName( "Person Repository Implementation Test" )
 class PersonRepositoryImplTest {
@@ -61,8 +62,37 @@ class PersonRepositoryImplTest {
     }
 
     @Test
+    @DisplayName( "Get all persons - Flux collectList" )
     void testFluxToListMono () {
         Mono<List<Person>> personListMono = personFlux.collectList();
         personListMono.subscribe( list -> list.forEach( System.out::println ) );
+    }
+
+    // Filtering Flux objects
+
+    @Test
+    @DisplayName( "Get a person by ID with Flux filtering" )
+    void testFindPersonById () {
+        final Integer id = 4;
+        Mono<Person> personFound = personFlux.filter( person -> Objects.equals( person.getId(), id ) ).next();
+        personFound.subscribe( System.out::println );
+    }
+
+    @Test
+    @DisplayName( "Get a person by ID with Flux filtering - Not found" )
+    void testFindPersonByIdNotFound () {
+        final Integer id = 100;
+        Mono<Person> personFound = personFlux.filter( person -> Objects.equals( person.getId(), id ) ).next();
+        personFound.subscribe( System.out::println );
+    }
+
+    @Test
+    @DisplayName( "Get a person by ID with Flux filtering" )
+    void testFindPersonByIdNotFoundWithException () {
+        final Integer id = 100;
+        Mono<Person> personFound = personFlux.filter( person -> Objects.equals( person.getId(), id ) ).single();
+        personFound.doOnError( error -> System.out.println( "Person not found" ) )
+                .onErrorReturn( Person.builder().id( id ).build() )
+                .subscribe( System.out::println );
     }
 }
